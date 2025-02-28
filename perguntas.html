@@ -253,6 +253,18 @@
           opacity: 0;
         }
       }
+
+      .back-link {
+        margin-top: 20px;
+        font-size: 16px;
+        color: #ff4d94;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .back-link:hover {
+        color: #e6005c;
+      }
     </style>
   </head>
   <body>
@@ -288,6 +300,7 @@
           </p>
         </div>
         <button class="restart-btn" id="restartBtn">Começar de Novo</button>
+        <a href="index.html" class="back-link">Voltar à tela inicial</a>
       </div>
     </div>
 
@@ -296,42 +309,56 @@
       const story = [
         {
           message:
-            "Era uma vez um casal muito especial. Eles se conheceram de uma forma única e desde então têm vivido momentos incríveis juntos.",
-          question: "Você lembra como nos conhecemos?",
+            "Era uma vez um garoto e uma garota. Eles estudavam juntos e se conheceram e aproximaram de uma forma única e desde então têm vivido momentos incríveis juntos.",
+          question: "A quanto tempo nos conhecemos e somos amigos?",
           options: [
-            { text: "Claro que sim!", next: 1 },
-            { text: "Como poderia esquecer?", next: 1 },
-            { text: "Foi o melhor dia da minha vida!", next: 1 },
+            { text: "A mais de 8 anos", correct: true },
+            { text: "Aproximadamente 4 anos", correct: false },
+            { text: "50 anos", correct: false },
           ],
         },
         {
           message:
-            "E desde aquele dia, tenho me apaixonado cada vez mais por você. Seu sorriso ilumina meus dias e seu coração aquece minha alma.",
-          question: "O que você mais gosta em nós como casal?",
+            "E desde aquele dia, tenho me apaixonado cada vez mais por você, até que tive coragem e pedi a sua mão em namoro. Seu sorriso ilumina meus dias e seu coração aquece minha alma.",
+          question: "Qual é o nosso maior objetivo atual?",
           options: [
-            { text: "Nossa cumplicidade", next: 2 },
-            { text: "O jeito que rimos juntos", next: 2 },
-            { text: "Como cuidamos um do outro", next: 2 },
+            {
+              text: "Ser rico e ir para França e conhecer Paris",
+              correct: false,
+            },
+            {
+              text: "Nos formar e sermos doutores em nossas áreas.",
+              correct: false,
+            },
+            {
+              text: "Fortalecer a nossa união através do casamento e nos unirmos em uma família",
+              correct: true,
+            },
           ],
         },
         {
           message:
             "Sabia que você diria isso! É exatamente o que torna nosso relacionamento tão especial.",
-          question: "Se pudéssemos ir a qualquer lugar agora, onde seria?",
+          question: "Até quando nosso amor durará?",
           options: [
-            { text: "Praia paradisíaca", next: 3 },
-            { text: "Cidade romântica", next: 3 },
-            { text: "Montanhas com neve", next: 3 },
+            { text: "Até quando eu tiver dinheiro", correct: false },
+            {
+              text: "Até que a morte nos separe, mesmo assim nos reencontraremos lá no céu",
+              correct: true,
+            },
+            {
+              text: "Até voce parar de me dar chocolate e produtos de beleza e lavagem de cabelo",
+              correct: false,
+            },
           ],
         },
         {
-          message:
-            "Adoraria te levar lá! Quem sabe no próximo aniversário? Mas hoje, tenho algo especial para você.",
+          message: "Eu também penso o mesmo, minha princesa!",
           question: "Você está pronta para sua surpresa?",
           options: [
-            { text: "Sim, estou curiosa!", next: "final" },
-            { text: "Mal posso esperar!", next: "final" },
-            { text: "Claro que sim!", next: "final" },
+            { text: "Sim, estou curiosa!", correct: true },
+            { text: "Mal posso esperar!", correct: true },
+            { text: "Claro que sim!", correct: true },
           ],
         },
       ];
@@ -389,7 +416,18 @@
           btn.classList.add("option-btn");
           btn.textContent = option.text;
           btn.addEventListener("click", () => {
-            showStory(option.next);
+            if (option.correct) {
+              currentIndex++;
+              if (currentIndex < story.length) {
+                showStory(currentIndex);
+              } else {
+                showStory("final");
+              }
+            } else {
+              alert("Resposta errada! Tente novamente.");
+              currentIndex = 0;
+              showStory(currentIndex);
+            }
           });
           options.appendChild(btn);
         });
