@@ -31,7 +31,10 @@
             princesa, feliz aniversário e que venha muitos anos de vida para
             você meu amor!
           </p>
-          <button>Beijos do seu amor, <strong>Kawan!</strong></button>
+          <button class="beijo">
+            Beijos do seu amor, <strong>Kawan!</strong>
+            <img src="./src/beijo.png" alt="Beijo" class="beijo-img" />
+          </button>
         </div>
 
         <div class="image">
@@ -133,6 +136,14 @@
       function fecharLightbox() {
         document.getElementById("lightbox").style.display = "none";
       }
+
+      document.querySelector(".beijo").addEventListener("click", function () {
+        const beijoImg = this.querySelector(".beijo-img");
+        beijoImg.classList.add("beijo-animate");
+        setTimeout(() => {
+          beijoImg.classList.remove("beijo-animate");
+        }, 1000); // Duração da animação
+      });
     </script>
   </body>
 </html>

@@ -30,12 +30,12 @@ header {
 .logo {
   display: flex;
   font-weight: bold;
-  font-size: 36px;
+  font-size: 2.25rem; /* 36px */
 }
 
 .links {
   display: flex;
-  font-size: 18px;
+  font-size: 1.125rem; /* 18px */
   gap: 36px;
 }
 
@@ -61,18 +61,19 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 500px;
-  height: 500px;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
 }
 
 .container .content h1 {
-  font-size: 48px;
+  font-size: 3rem; /* 48px */
   color: #f9faf8;
   font-weight: 900;
 }
 
 .container .content p {
-  font-size: 18px;
+  font-size: 1.125rem; /* 18px */
   color: #e5e7eb;
 }
 
@@ -86,12 +87,17 @@ header {
   cursor: pointer;
 }
 
-.cointainer .image {
+.container .image {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
 }
+
 .container .image img {
-  width: 500px;
-  height: 500px;
+  width: 100%;
+  height: auto;
   border-radius: 50%;
 }
 
@@ -108,7 +114,7 @@ main .information {
 }
 
 main .information h1 {
-  font-size: 36px;
+  font-size: 2.25rem; /* 36px */
   color: #1f2947;
   font-weight: 900;
 }
@@ -119,6 +125,7 @@ main .information .galeria {
   justify-content: center;
   align-items: center;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
 main .information .galeria div {
@@ -130,8 +137,9 @@ main .information .galeria div {
 }
 
 main .information .galeria div img {
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  max-width: 200px;
+  height: auto;
   border-radius: 10px;
   margin: 20px 0;
 }
@@ -154,7 +162,7 @@ main .text .textinho {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 36px;
+  font-size: 2.25rem; /* 36px */
   color: #1f2937;
   font-style: italic;
 }
@@ -165,7 +173,7 @@ main .text .citacao {
   justify-content: center;
   align-items: flex-end;
   margin: 10px 10px;
-  font-size: 24px;
+  font-size: 1.5rem; /* 24px */
   font-weight: 900;
   color: #1f2937;
 }
@@ -180,7 +188,7 @@ main .text .citacao {
 }
 
 .galeria-fotos h1 {
-  font-size: 36px;
+  font-size: 2.25rem; /* 36px */
   color: #1f2937;
   font-weight: 900;
 }
@@ -194,7 +202,8 @@ main .text .citacao {
 
 .galeria img {
   cursor: pointer;
-  width: 300px;
+  width: 100%;
+  max-width: 300px;
   height: auto;
   border-radius: 8px;
   transition: transform 0.3s ease;
@@ -229,4 +238,106 @@ footer {
   padding: 20px;
   background: #1f2937;
   color: #f8f8f2;
+}
+
+.beijo-img {
+  position: absolute;
+  width: 100px; /* Aumente o tamanho da imagem */
+  height: 100px; /* Aumente o tamanho da imagem */
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+@keyframes beijo-animation {
+  0% {
+    transform: scale(0.5) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5) translateY(-100px);
+    opacity: 0;
+  }
+}
+
+.beijo-animate {
+  animation: beijo-animation 1s forwards;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .header-top {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .container {
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  .container .content h1 {
+    font-size: 2.25rem; /* 36px */
+  }
+
+  .container .content p {
+    font-size: 1rem; /* 16px */
+  }
+
+  .container .content button {
+    font-size: 1rem; /* 16px */
+  }
+
+  .main .information h1 {
+    font-size: 1.5rem; /* 24px */
+  }
+
+  .main .text .textinho {
+    font-size: 1.5rem; /* 24px */
+  }
+
+  .main .text .citacao {
+    font-size: 1.125rem; /* 18px */
+  }
+
+  .galeria img {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-top {
+    gap: 10px;
+  }
+
+  .container {
+    gap: 20px;
+  }
+
+  .container .content h1 {
+    font-size: 1.5rem; /* 24px */
+  }
+
+  .container .content p {
+    font-size: 0.875rem; /* 14px */
+  }
+
+  .container .content button {
+    font-size: 0.875rem; /* 14px */
+  }
+
+  .main .information h1 {
+    font-size: 1.25rem; /* 20px */
+  }
+
+  .main .text .textinho {
+    font-size: 1.25rem; /* 20px */
+  }
+
+  .main .text .citacao {
+    font-size: 1rem; /* 16px */
+  }
+
+  .galeria img {
+    max-width: 100%;
+  }
 }
