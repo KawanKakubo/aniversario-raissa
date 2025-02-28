@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feliz Aniversário, Amor!</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #ffe6f2;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        overflow: hidden;
+        text-align: center;
+        color: #333;
+      }
+
+      .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        position: relative;
+        z-index: 10;
+      }
+
+      h1 {
+        color: #ff4d94;
+        margin-bottom: 30px;
+      }
+
+      .start-btn {
+        background-color: #ff4d94;
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 50px;
+        font-size: 18px;
+        cursor: pointer;
+        margin: 20px 0;
+        transition: all 0.3s;
+      }
+
+      .start-btn:hover {
+        background-color: #e6005c;
+        transform: scale(1.05);
+      }
+
+      .card {
+        width: 100%;
+        background-color: white;
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 20px;
+        display: none;
+        position: relative;
+      }
+
+      .message {
+        font-size: 18px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+
+      .question {
+        font-size: 20px;
+        font-weight: bold;
+        margin: 30px 0 20px;
+        color: #ff4d94;
+      }
+
+      .options {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      .option-btn {
+        background-color: #ffb3d9;
+        color: #333;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 50px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .option-btn:hover {
+        background-color: #ff80bf;
+        transform: scale(1.05);
+      }
+
+      .hearts {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .heart {
+        position: absolute;
+        font-size: 25px;
+        color: #ff4d94;
+        opacity: 0;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(100vh) scale(0);
+          opacity: 0;
+        }
+        20% {
+          opacity: 0.8;
+        }
+        80% {
+          opacity: 0.8;
+        }
+        100% {
+          transform: translateY(-50px) scale(1);
+          opacity: 0;
+        }
+      }
+
+      .final-message {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 30px;
+      }
+
+      .final-message h2 {
+        color: #ff4d94;
+        margin-bottom: 20px;
+      }
+
+      .final-message p {
+        font-size: 18px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+
+      .gift {
+        font-size: 100px;
+        margin: 20px 0;
+        animation: pulse 1.5s ease-in-out infinite;
+        cursor: pointer;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .final-gift {
+        display: none;
+        margin-top: 30px;
+      }
+
+      .coupon {
+        width: 300px;
+        height: 150px;
+        background: linear-gradient(45deg, #ff4d94, #ff80bf);
+        border-radius: 10px;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+        margin: 20px auto;
+      }
+
+      .coupon:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -50%;
+        width: 200%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.1);
+        transform: rotate(45deg);
+      }
+
+      .coupon h3 {
+        font-size: 22px;
+        margin-bottom: 10px;
+        z-index: 2;
+      }
+
+      .coupon p {
+        font-size: 16px;
+        text-align: center;
+        padding: 0 20px;
+        z-index: 2;
+      }
+
+      .restart-btn {
+        background-color: #ff4d94;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 50px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: all 0.3s;
+      }
+
+      .restart-btn:hover {
+        background-color: #e6005c;
+        transform: scale(1.05);
+      }
+
+      .firework {
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      @keyframes explode {
+        0% {
+          transform: translate(0, 0);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(var(--x), var(--y));
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hearts" id="hearts"></div>
+
+    <div class="container">
+      <h1>Feliz Aniversário, Meu Amor!</h1>
+      <p>Hoje é um dia especial, e preparei uma pequena surpresa para você!</p>
+      <button class="start-btn" id="startBtn">Começar Surpresa</button>
+
+      <div class="card" id="storyCard">
+        <div class="message" id="storyMessage"></div>
+        <div class="question" id="question"></div>
+        <div class="options" id="options"></div>
+      </div>
+
+      <div class="final-message" id="finalMessage">
+        <h2>Parabéns, Amor!</h2>
+        <p>
+          Você é tudo na minha vida. Obrigado por cada momento, cada sorriso e
+          cada memória que construímos juntos.
+        </p>
+        <div class="gift" id="giftBtn">🎁</div>
+        <p>Clique no presente para abrir sua surpresa!</p>
+      </div>
+
+      <div class="final-gift" id="finalGift">
+        <div class="coupon">
+          <h3>Cupom de Amor</h3>
+          <p>
+            Este cupom dá direito a beijos e carinhos ilimitados. Resgate agora
+            mesmo! ❤️
+          </p>
+        </div>
+        <button class="restart-btn" id="restartBtn">Começar de Novo</button>
+      </div>
+    </div>
+
+    <script>
+      // Definindo a história e as perguntas
+      const story = [
+        {
+          message:
+            "Era uma vez um casal muito especial. Eles se conheceram de uma forma única e desde então têm vivido momentos incríveis juntos.",
+          question: "Você lembra como nos conhecemos?",
+          options: [
+            { text: "Claro que sim!", next: 1 },
+            { text: "Como poderia esquecer?", next: 1 },
+            { text: "Foi o melhor dia da minha vida!", next: 1 },
+          ],
+        },
+        {
+          message:
+            "E desde aquele dia, tenho me apaixonado cada vez mais por você. Seu sorriso ilumina meus dias e seu coração aquece minha alma.",
+          question: "O que você mais gosta em nós como casal?",
+          options: [
+            { text: "Nossa cumplicidade", next: 2 },
+            { text: "O jeito que rimos juntos", next: 2 },
+            { text: "Como cuidamos um do outro", next: 2 },
+          ],
+        },
+        {
+          message:
+            "Sabia que você diria isso! É exatamente o que torna nosso relacionamento tão especial.",
+          question: "Se pudéssemos ir a qualquer lugar agora, onde seria?",
+          options: [
+            { text: "Praia paradisíaca", next: 3 },
+            { text: "Cidade romântica", next: 3 },
+            { text: "Montanhas com neve", next: 3 },
+          ],
+        },
+        {
+          message:
+            "Adoraria te levar lá! Quem sabe no próximo aniversário? Mas hoje, tenho algo especial para você.",
+          question: "Você está pronta para sua surpresa?",
+          options: [
+            { text: "Sim, estou curiosa!", next: "final" },
+            { text: "Mal posso esperar!", next: "final" },
+            { text: "Claro que sim!", next: "final" },
+          ],
+        },
+      ];
+
+      // Elementos DOM
+      const startBtn = document.getElementById("startBtn");
+      const storyCard = document.getElementById("storyCard");
+      const storyMessage = document.getElementById("storyMessage");
+      const question = document.getElementById("question");
+      const options = document.getElementById("options");
+      const finalMessage = document.getElementById("finalMessage");
+      const giftBtn = document.getElementById("giftBtn");
+      const finalGift = document.getElementById("finalGift");
+      const restartBtn = document.getElementById("restartBtn");
+      const heartsContainer = document.getElementById("hearts");
+
+      // Índice atual da história
+      let currentIndex = 0;
+
+      // Função para criar corações flutuantes
+      function createHearts() {
+        setInterval(() => {
+          const heart = document.createElement("div");
+          heart.classList.add("heart");
+          heart.innerHTML = "❤️";
+          heart.style.left = Math.random() * 100 + "vw";
+          heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+          heartsContainer.appendChild(heart);
+
+          setTimeout(() => {
+            heart.remove();
+          }, 6000);
+        }, 300);
+      }
+
+      // Função para mostrar a parte atual da história
+      function showStory(index) {
+        if (index === "final") {
+          storyCard.style.display = "none";
+          finalMessage.style.display = "flex";
+          createFireworks();
+          return;
+        }
+
+        const current = story[index];
+        storyMessage.textContent = current.message;
+        question.textContent = current.question;
+
+        // Limpar opções anteriores
+        options.innerHTML = "";
+
+        // Criar botões de opção
+        current.options.forEach((option) => {
+          const btn = document.createElement("button");
+          btn.classList.add("option-btn");
+          btn.textContent = option.text;
+          btn.addEventListener("click", () => {
+            showStory(option.next);
+          });
+          options.appendChild(btn);
+        });
+      }
+
+      // Função para criar fogos de artifício
+      function createFireworks() {
+        const colors = ["#ff4d94", "#ffb3d9", "#ff80bf", "#ffccff", "#ff66b2"];
+
+        for (let i = 0; i < 5; i++) {
+          setTimeout(() => {
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight * 0.5;
+
+            createFirework(
+              x,
+              y,
+              colors[Math.floor(Math.random() * colors.length)]
+            );
+          }, i * 800);
+        }
+      }
+
+      function createFirework(x, y, color) {
+        for (let i = 0; i < 30; i++) {
+          const firework = document.createElement("div");
+          firework.classList.add("firework");
+          firework.style.backgroundColor = color;
+          firework.style.left = x + "px";
+          firework.style.top = y + "px";
+
+          const angle = Math.random() * Math.PI * 2;
+          const distance = Math.random() * 100 + 50;
+          const xEnd = Math.cos(angle) * distance;
+          const yEnd = Math.sin(angle) * distance;
+
+          firework.style.setProperty("--x", xEnd + "px");
+          firework.style.setProperty("--y", yEnd + "px");
+
+          document.body.appendChild(firework);
+
+          firework.style.animation = `explode ${
+            Math.random() * 1 + 1
+          }s forwards`;
+
+          setTimeout(() => {
+            firework.remove();
+          }, 2000);
+        }
+      }
+
+      // Event listeners
+      startBtn.addEventListener("click", () => {
+        startBtn.style.display = "none";
+        storyCard.style.display = "block";
+        showStory(currentIndex);
+        createHearts();
+      });
+
+      giftBtn.addEventListener("click", () => {
+        finalMessage.style.display = "none";
+        finalGift.style.display = "block";
+        createFireworks();
+      });
+
+      restartBtn.addEventListener("click", () => {
+        currentIndex = 0;
+        finalGift.style.display = "none";
+        storyCard.style.display = "block";
+        showStory(currentIndex);
+      });
+    </script>
+  </body>
+</html>

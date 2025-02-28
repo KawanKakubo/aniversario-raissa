@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="./src/favicon.ico" type="image/x-icon" />
+    <meta name="description" content="Site de aniversário para Raissa" />
+    <title>Te amo, Raissa!</title>
+  </head>
+  <body>
+    <header>
+      <div class="header-top">
+        <p class="logo">Feliz aniversário, meu amor!</p>
+        <div class="links">
+          <a
+            href="https://api.whatsapp.com/send?phone=+554399058050&text=Ol%C3%A1,%20veja%20a%20imagem%20aqui:%20https://link-da-imagem.com"
+            target="_blank"
+            >Supresa 1</a
+          >
+          <a href="./jogo.html">Surpresa 2</a>
+          <a href="./perguntas.html">Surpresa 3</a>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="content">
+          <h1>Parabéns, Raissa!</h1>
+          <p>
+            Esse site foi feito com muito amor e carinho para você, minha
+            princesa, feliz aniversário e que venha muitos anos de vida para
+            você meu amor!
+          </p>
+          <button>Beijos do seu amor, <strong>Kawan!</strong></button>
+        </div>
+
+        <div class="image">
+          <img src="./src/sorvete.jpeg" alt="" />
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="information">
+        <h1>Alguns dos nossos momentos juntos!</h1>
+
+        <div class="galeria">
+          <div>
+            <img
+              src="./src/vestibular.jpeg"
+              alt=""
+              onclick="abrirLightbox(this)"
+            />
+            <p>Nós dois nos preparando para nossas provas de vestibulares...</p>
+          </div>
+          <div>
+            <img
+              src="./src/formatura1.jpeg"
+              alt=""
+              onclick="abrirLightbox(this)"
+            />
+            <p>Formada no Ensino Médio...</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text">
+        <p class="textinho">
+          "Feliz aniversário, meu amor. Você é o meu pequeno infinito, aquele
+          que torna cada dia mais bonito só por existir. Sou grato por cada
+          momento ao seu lado, pois em você encontrei um amor que transborda o
+          tempo. Que sua vida seja tão maravilhosa quanto o que sinto por você."
+        </p>
+        <p class="citacao">- "A Culpa é das Estrelas"</p>
+      </div>
+
+      <div class="galeria-fotos">
+        <h1>Galeria de Fotos da Mulher mais Linda do Universo</h1>
+        <div class="galeria">
+          <img
+            src="./src/ccb.jpeg"
+            alt="Imagem 1"
+            onclick="abrirLightbox(this)"
+          />
+          <img
+            src="./src/formatura2.jpeg"
+            alt="Imagem 2"
+            onclick="abrirLightbox(this)"
+          />
+          <img
+            src="./src/keyane1.jpeg"
+            alt="Imagem 3"
+            onclick="abrirLightbox(this)"
+          />
+          <img
+            src="./src/keyane2.jpeg"
+            alt="Imagem 4"
+            onclick="abrirLightbox(this)"
+          />
+          <img
+            src="./src/londrina-igapo.jpeg"
+            alt="Imagem 5"
+            onclick="abrirLightbox(this)"
+          />
+          <img
+            src="./src/londrina-igapo2.jpeg"
+            alt="Imagem 6"
+            onclick="abrirLightbox(this)"
+          />
+          <img
+            src="./src/william.jpeg"
+            alt="Imagem 7"
+            onclick="abrirLightbox(this)"
+          />
+        </div>
+      </div>
+
+      <div class="lightbox" id="lightbox" onclick="fecharLightbox()">
+        <img id="lightbox-img" />
+      </div>
+    </main>
+
+    <footer>
+      <p>Feito com ❤️ por Kawan</p>
+    </footer>
+
+    <script>
+      function abrirLightbox(img) {
+        document.getElementById("lightbox-img").src = img.src;
+        document.getElementById("lightbox").style.display = "flex";
+      }
+
+      function fecharLightbox() {
+        document.getElementById("lightbox").style.display = "none";
+      }
+    </script>
+  </body>
+</html>

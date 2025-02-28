@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Joguinho do Amor</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f8ff;
+        margin: 0;
+      }
+
+      .container {
+        text-align: center;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        color: #ff69b4;
+      }
+
+      .message {
+        margin-top: 20px;
+        font-size: 24px;
+        color: #ff1493;
+        display: none;
+      }
+
+      button {
+        background-color: #ff1493;
+        color: white;
+        font-size: 18px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #ff69b4;
+      }
+
+      .link {
+        margin-top: 20px;
+        font-size: 18px;
+        text-decoration: none;
+        color: #ff1493;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Bem-vindo ao Joguinho do Amor!</h1>
+      <p>Você está prestes a jogar meu jogo.</p>
+      <button onclick="revelarMensagem()">Clique para jogar!</button>
+      <p class="message" id="mensagem">
+        Parabéns! Você completou o jogo! <br />GANHOU UM BEIJO DO KAWAN!
+      </p>
+      <a href="./index.html" class="link">Clique aqui para mais surpresas!</a>
+    </div>
+
+    <script>
+      function revelarMensagem() {
+        document.getElementById("mensagem").style.display = "block";
+      }
+    </script>
+  </body>
+</html>
